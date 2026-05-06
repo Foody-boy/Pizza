@@ -3,154 +3,255 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Pizza Recipe</title>
-
+  <title>10 Indian Recipes</title>
   <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial, sans-serif;
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff8f0;
+      color: #333;
+      line-height: 1.6;
     }
 
-    body{
-      background:#f4f4f4;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      min-height:100vh;
-      padding:20px;
+    header {
+      background: #d35400;
+      color: white;
+      padding: 20px;
+      text-align: center;
     }
 
-    .card{
-      width:900px;
-      max-width:100%;
-      background:white;
-      border-radius:20px;
-      overflow:hidden;
-      box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    nav {
+      background: #f39c12;
+      padding: 10px;
+      text-align: center;
+      position: sticky;
+      top: 0;
     }
 
-    .hero{
-      width:100%;
-      height:400px;
-      object-fit:cover;
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 10px;
+      font-weight: bold;
     }
 
-    .content{
-      padding:30px;
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
     }
 
-    h1{
-      text-align:center;
-      color:#d62828;
-      margin-bottom:20px;
-      font-size:42px;
+    .recipe {
+      background: white;
+      margin-bottom: 30px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
-    h2{
-      color:#222;
-      margin-top:25px;
-      margin-bottom:10px;
+    .recipe h2 {
+      color: #d35400;
     }
 
-    p{
-      color:#555;
-      line-height:1.7;
-      font-size:18px;
+    ul, ol {
+      padding-left: 20px;
     }
 
-    ul,ol{
-      margin-left:25px;
-      color:#444;
-      line-height:1.8;
-      font-size:18px;
+    footer {
+      background: #d35400;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 20px;
     }
-
-    .button{
-      display:block;
-      width:220px;
-      margin:30px auto 10px;
-      text-align:center;
-      background:#d62828;
-      color:white;
-      text-decoration:none;
-      padding:14px;
-      border-radius:12px;
-      transition:0.3s;
-      font-size:18px;
-    }
-
-    .button:hover{
-      background:#a61b1b;
-    }
-
-    @media(max-width:700px){
-
-      .hero{
-        height:250px;
-      }
-
-      h1{
-        font-size:30px;
-      }
-
-      p, ul, ol{
-        font-size:16px;
-      }
-    }
-
   </style>
 </head>
-
 <body>
 
-  <div class="card">
+<header>
+  <h1>10 Delicious Indian Recipes</h1>
+  <p>Traditional Indian Dishes with Detailed Recipes</p>
+</header>
 
-    <!-- Online Pizza Image -->
-    <img 
-      src="https://images.unsplash.com/photo-1513104890138-7c749659a591?q=80&w=1200&auto=format&fit=crop"
-      alt="Pizza"
-      class="hero"
-    >
+<nav>
+  <a href="#butterchicken">Butter Chicken</a>
+  <a href="#paneer">Paneer Butter Masala</a>
+  <a href="#dosa">Masala Dosa</a>
+  <a href="#biryani">Biryani</a>
+  <a href="#gulab">Gulab Jamun</a>
+</nav>
 
-    <div class="content">
+<div class="container">
 
-      <h1>🍕 Homemade Pizza Recipe</h1>
+  <div class="recipe" id="butterchicken">
+    <h2>1. Butter Chicken</h2>
+    <p>Butter Chicken is a creamy and flavorful North Indian dish loved around the world.</p>
 
-      <p>
-        Make a delicious homemade pizza with cheesy toppings, crispy crust,
-        and fresh ingredients right at home.
-      </p>
+    <h3>Ingredients</h3>
+    <ul>
+      <li>500 g chicken</li>
+      <li>1 cup curd</li>
+      <li>2 onions</li>
+      <li>3 tomatoes</li>
+      <li>Butter and cream</li>
+      <li>Spices and salt</li>
+    </ul>
 
-      <h2>Ingredients</h2>
-
-      <ul>
-        <li>2 cups flour</li>
-        <li>1 tsp yeast</li>
-        <li>1/2 cup pizza sauce</li>
-        <li>1 cup mozzarella cheese</li>
-        <li>Vegetables of your choice</li>
-        <li>Olive oil</li>
-      </ul>
-
-      <h2>Steps</h2>
-
-      <ol>
-        <li>Prepare the pizza dough.</li>
-        <li>Spread pizza sauce evenly.</li>
-        <li>Add cheese and toppings.</li>
-        <li>Bake at 220°C for 15 minutes.</li>
-        <li>Serve hot and enjoy!</li>
-      </ol>
-
-      <a href="#" class="button">Try This Recipe</a>
-
-    </div>
-
+    <h3>Recipe</h3>
+    <ol>
+      <li>Marinate chicken with curd and spices.</li>
+      <li>Cook onions and tomato puree in butter.</li>
+      <li>Add cooked chicken to the gravy.</li>
+      <li>Pour cream and cook for 10 minutes.</li>
+      <li>Serve hot with naan.</li>
+    </ol>
   </div>
+
+  <div class="recipe" id="paneer">
+    <h2>2. Paneer Butter Masala</h2>
+    <p>A rich vegetarian curry made with paneer cubes and creamy tomato gravy.</p>
+
+    <h3>Ingredients</h3>
+    <ul>
+      <li>250 g paneer</li>
+      <li>Tomatoes and onions</li>
+      <li>Butter and cream</li>
+      <li>Indian spices</li>
+    </ul>
+
+    <h3>Recipe</h3>
+    <ol>
+      <li>Cook onion and tomato gravy.</li>
+      <li>Add spices and cream.</li>
+      <li>Mix paneer cubes carefully.</li>
+      <li>Cook for 5 minutes.</li>
+      <li>Serve hot.</li>
+    </ol>
+  </div>
+
+  <div class="recipe" id="dosa">
+    <h2>3. Masala Dosa</h2>
+    <p>A crispy South Indian dosa filled with spicy potato stuffing.</p>
+
+    <h3>Ingredients</h3>
+    <ul>
+      <li>Rice batter</li>
+      <li>Urad dal</li>
+      <li>Boiled potatoes</li>
+      <li>Onions and spices</li>
+    </ul>
+
+    <h3>Recipe</h3>
+    <ol>
+      <li>Prepare dosa batter and ferment it.</li>
+      <li>Cook spicy potato filling.</li>
+      <li>Spread batter on tawa.</li>
+      <li>Add filling and fold dosa.</li>
+      <li>Serve with chutney and sambar.</li>
+    </ol>
+  </div>
+
+  <div class="recipe">
+    <h2>4. Chole Bhature</h2>
+    <p>A famous Punjabi dish with spicy chickpeas and fluffy fried bread.</p>
+
+    <h3>Recipe</h3>
+    <ol>
+      <li>Cook chickpeas with masala gravy.</li>
+      <li>Prepare bhature dough.</li>
+      <li>Deep fry bhature until puffed.</li>
+      <li>Serve hot with onions and pickle.</li>
+    </ol>
+  </div>
+
+  <div class="recipe" id="biryani">
+    <h2>5. Hyderabadi Biryani</h2>
+    <p>A royal rice dish cooked with spices and chicken.</p>
+
+    <h3>Recipe</h3>
+    <ol>
+      <li>Marinate chicken with spices and curd.</li>
+      <li>Cook basmati rice separately.</li>
+      <li>Layer rice and chicken in a pot.</li>
+      <li>Add saffron milk and fried onions.</li>
+      <li>Cook on dum for 30 minutes.</li>
+    </ol>
+  </div>
+
+  <div class="recipe">
+    <h2>6. Rajma Chawal</h2>
+    <p>Kidney beans curry served with steamed rice.</p>
+
+    <h3>Recipe</h3>
+    <ol>
+      <li>Pressure cook rajma.</li>
+      <li>Prepare onion tomato gravy.</li>
+      <li>Add rajma and simmer.</li>
+      <li>Serve with rice.</li>
+    </ol>
+  </div>
+
+  <div class="recipe">
+    <h2>7. Pav Bhaji</h2>
+    <p>A popular Mumbai street food made with mashed vegetables and buttered pav.</p>
+
+    <h3>Recipe</h3>
+    <ol>
+      <li>Boil and mash vegetables.</li>
+      <li>Cook with spices and butter.</li>
+      <li>Toast pav buns with butter.</li>
+      <li>Serve hot with lemon and onions.</li>
+    </ol>
+  </div>
+
+  <div class="recipe">
+    <h2>8. Palak Paneer</h2>
+    <p>Healthy spinach gravy cooked with paneer cubes.</p>
+
+    <h3>Recipe</h3>
+    <ol>
+      <li>Boil and blend spinach.</li>
+      <li>Cook onion tomato masala.</li>
+      <li>Add spinach puree and paneer.</li>
+      <li>Cook for 5 minutes and serve.</li>
+    </ol>
+  </div>
+
+  <div class="recipe">
+    <h2>9. Dal Tadka</h2>
+    <p>Simple lentil curry topped with spicy tempering.</p>
+
+    <h3>Recipe</h3>
+    <ol>
+      <li>Pressure cook dal.</li>
+      <li>Prepare tadka with garlic and spices.</li>
+      <li>Mix with dal and simmer.</li>
+      <li>Serve hot with rice.</li>
+    </ol>
+  </div>
+
+  <div class="recipe" id="gulab">
+    <h2>10. Gulab Jamun</h2>
+    <p>A sweet Indian dessert soaked in sugar syrup.</p>
+
+    <h3>Recipe</h3>
+    <ol>
+      <li>Prepare dough using khoya and flour.</li>
+      <li>Make small balls and fry them.</li>
+      <li>Prepare sugar syrup.</li>
+      <li>Soak gulab jamuns in syrup.</li>
+      <li>Serve warm or chilled.</li>
+    </ol>
+  </div>
+
+</div>
+
+<footer>
+  <p>Indian Recipes Website | Made with HTML & CSS</p>
+</footer>
 
 </body>
 </html>
+
