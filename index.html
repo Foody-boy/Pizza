@@ -1,329 +1,425 @@
-# Global Vegetarian Recipe App (HTML)
+# 20 Premium Vegetarian Cuisine Recipe Book – Single File HTML Code
 
-Save this as `index.html` and open it in any browser.
+Save this as `index.html`
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>World Vegetarian Recipes</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>50+ Vegetarian World Recipes</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins', sans-serif;
+font-family:'Poppins',sans-serif;
 }
+
 body{
-background:linear-gradient(135deg,#fff8f0,#ffe0b2);
-display:flex;
-height:100vh;
-overflow:hidden;
-}
-.sidebar{
-width:30%;
-background:linear-gradient(180deg,#ff6f00,#ff9800);
+background:linear-gradient(135deg,#0f172a,#1e293b,#0f766e);
+min-height:100vh;
 color:white;
-overflow-y:auto;
-padding:20px;
-box-shadow:4px 0 10px rgba(0,0,0,0.2);
+padding:25px;
 }
-.sidebar h1{
+
+.hero{
 text-align:center;
-margin-bottom:20px;
-font-size:34px;
-font-weight:bold;
-text-shadow:2px 2px 5px rgba(0,0,0,0.3);
+padding:40px 20px;
+background:rgba(255,255,255,0.08);
+border-radius:30px;
+backdrop-filter:blur(10px);
+box-shadow:0 10px 40px rgba(0,0,0,0.4);
+margin-bottom:30px;
 }
-.recipe-list button{
-width:100%;
-padding:14px;
-margin:8px 0;
+
+.hero h1{
+font-size:3rem;
+margin-bottom:10px;
+background:linear-gradient(to right,#facc15,#fb7185,#38bdf8);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero p{
+font-size:1.1rem;
+opacity:0.9;
+}
+
+.top-bar{
+display:flex;
+justify-content:center;
+gap:15px;
+margin:25px 0;
+flex-wrap:wrap;
+}
+
+input{
+padding:14px 18px;
+width:320px;
 border:none;
-border-radius:14px;
-background:rgba(255,255,255,0.15);
-backdrop-filter:blur(5px);
+border-radius:15px;
+font-size:1rem;
+outline:none;
+}
+
+button{
+padding:14px 22px;
+border:none;
+border-radius:15px;
+background:linear-gradient(45deg,#f97316,#ef4444);
 color:white;
-font-size:17px;
+font-size:1rem;
+font-weight:600;
 cursor:pointer;
 transition:0.3s;
-text-align:left;
-font-weight:bold;
 }
-.recipe-list button:hover{
-background:white;
-color:#ff6f00;
-transform:scale(1.03);
+
+button:hover{
+transform:translateY(-3px) scale(1.03);
+box-shadow:0 8px 20px rgba(0,0,0,0.3);
 }
-.content{
-width:70%;
-padding:30px;
-overflow-y:auto;
-background:#fffaf5;
+
+.recipe-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
 }
-.hero{
-background:url('https://images.unsplash.com/photo-1490645935967-10de6ba17061') center/cover;
-height:260px;
+
+.card{
+background:rgba(255,255,255,0.1);
 border-radius:25px;
-display:flex;
-align-items:center;
-justify-content:center;
-margin-bottom:25px;
-position:relative;
 overflow:hidden;
+backdrop-filter:blur(10px);
+transition:0.4s;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
 }
-.hero::after{
-content:'';
-position:absolute;
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
 width:100%;
-height:100%;
-background:rgba(0,0,0,0.45);
-}
-.hero h2{
-position:relative;
-color:white;
-font-size:42px;
-z-index:1;
-text-shadow:2px 2px 8px rgba(0,0,0,0.5);
-}
-.recipe-card{
-background:white;
-padding:25px;
-border-radius:25px;
-box-shadow:0 6px 18px rgba(0,0,0,0.15);
-animation:fadeIn 0.5s ease;
-}
-.content img{
-width:100%;
-max-height:380px;
+height:220px;
 object-fit:cover;
-border-radius:20px;
-margin-bottom:20px;
-box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
-.content h2{
-font-size:38px;
-margin-bottom:15px;
-color:#ff6f00;
+
+.card-content{
+padding:20px;
 }
-.section-title{
-margin-top:18px;
-font-size:24px;
-color:#e65100;
-font-weight:bold;
+
+.card h2{
+font-size:1.5rem;
+margin-bottom:10px;
+color:#fde68a;
 }
-ul,ol{
-margin-left:25px;
-margin-top:10px;
-line-height:2;
-font-size:17px;
-}
-p{
-line-height:1.8;
-margin-top:10px;
-font-size:17px;
-color:#444;
-}
-.badge{
+
+.cuisine{
 display:inline-block;
-padding:8px 15px;
-background:#ffcc80;
-color:#5d4037;
-border-radius:30px;
-margin-top:10px;
-font-weight:bold;
+padding:6px 12px;
+border-radius:50px;
+background:#14b8a6;
+margin-bottom:12px;
+font-size:0.85rem;
+font-weight:600;
 }
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(15px);}
-to{opacity:1;transform:translateY(0);}
+
+.ingredients,
+.steps{
+margin-top:12px;
 }
-@media(max-width:900px){
-body{
-flex-direction:column;
+
+.ingredients h3,
+.steps h3{
+margin-bottom:8px;
+color:#93c5fd;
 }
-.sidebar{
+
+ul,ol{
+padding-left:20px;
+line-height:1.7;
+}
+
+footer{
+margin-top:40px;
+text-align:center;
+padding:20px;
+opacity:0.8;
+}
+
+@media(max-width:768px){
+.hero h1{
+font-size:2.2rem;
+}
+
+input{
 width:100%;
-height:40%;
-}
-.content{
-width:100%;
-height:60%;
-}
-.hero{
-height:180px;
-}
-.hero h2{
-font-size:30px;
 }
 }
 </style>
 </head>
 <body>
 
-<div class="sidebar">
-<h1>🌍 Veg Recipes</h1>
-<div class="recipe-list" id="recipeList"></div>
+<div class="hero">
+<h1>30 Premium Vegetarian Cuisine Recipes</h1>
+<p>Explore 30 beautifully explained vegetarian recipes from famous cuisines around the world.</p>
 </div>
 
-<div class="content" id="content">
-<div class="hero">
-<h2>🍕 World Food Recipes 🍜</h2>
+<div class="top-bar">
+<select id="recipeIndex" style="padding:14px 18px;border:none;border-radius:15px;font-size:1rem;outline:none;min-width:260px;">
+<option value="">Choose a Recipe from Index</option>
+</select>
+<input type="text" id="search" placeholder="Search recipes...">
+<button onclick="downloadPDF()">Download PDF</button>
 </div>
-<div class="recipe-card">
-<h2>Welcome Food Lover!</h2>
-<p>Explore delicious vegetarian recipes from all around the world. Click any recipe from the colorful food index to view ingredients, cooking steps, and mouth-watering food photos.</p>
-<div class="badge">🌱 100% Vegetarian & Egg-Free</div>
-</div>
-</div>
+
+<div class="recipe-grid" id="recipeGrid"></div>
+
+<div id="recipePage" style="display:none; margin-top:30px;"></div>
+
+<footer>
+Made with delicious vegetarian flavors from around the world.
+</footer>
 
 <script>
 const recipes = [
 {
-name:"Margherita Pizza",
-country:"Italy",
-image:"https://images.unsplash.com/photo-1604382355076-af4b0eb60143",
-ingredients:["Pizza dough","Tomato sauce","Mozzarella cheese","Basil","Olive oil"],
-steps:["Roll the dough.","Spread tomato sauce.","Add cheese and basil.","Bake for 15 minutes.","Serve hot."],
-description:"Classic Italian pizza with cheese, tomato sauce, and basil."
+name:'Paneer Butter Masala',
+cuisine:'Indian',
+image:'https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?q=80&w=1200&auto=format&fit=crop',
+ingredients:['250g Paneer','3 Tomatoes','2 tbsp Butter','1/2 cup Fresh Cream','1 tsp Garam Masala','1 Onion chopped'],
+steps:['Heat butter in a pan','Cook onions until golden','Add ginger garlic paste','Mix tomato puree','Cook until oil separates','Add spices properly','Pour fresh cream','Add paneer cubes','Cook on low flame','Garnish with coriander','Serve hot','Enjoy with naan']
 },
 {
-name:"Paneer Butter Masala",
-country:"India",
-image:"https://images.unsplash.com/photo-1631452180519-c014fe946bc7",
-ingredients:["Paneer","Tomatoes","Butter","Cream","Spices"],
-steps:["Cook tomatoes and spices.","Blend into gravy.","Add paneer cubes.","Cook for 10 minutes.","Serve with naan."],
-description:"A creamy and rich Indian curry loved worldwide."
+name:'Masala Dosa',
+cuisine:'Indian',
+image:'https://images.unsplash.com/photo-1668236543090-82eba5ee5976?q=80&w=1200&auto=format&fit=crop',
+ingredients:['3 cups Dosa Batter','3 Potatoes','1 Onion','1 tsp Mustard Seeds','2 tbsp Oil'],
+steps:['Prepare dosa batter','Boil potatoes','Prepare masala filling','Heat dosa pan','Spread batter evenly','Drizzle oil','Cook until crispy','Add potato masala','Fold dosa carefully','Prepare chutney','Serve with sambar','Enjoy hot']
 },
 {
-name:"Veg Sushi",
-country:"Japan",
-image:"https://images.unsplash.com/photo-1579871494447-9811cf80d66c",
-ingredients:["Rice","Seaweed","Cucumber","Carrot","Avocado"],
-steps:["Cook sushi rice.","Place seaweed on mat.","Add vegetables.","Roll tightly.","Slice and serve."],
-description:"Healthy Japanese rice rolls with fresh vegetables."
+name:'Vegetable Biryani',
+cuisine:'Indian',
+image:'https://images.unsplash.com/photo-1631515243349-e0cb75fb8d3a?q=80&w=1200&auto=format&fit=crop',
+ingredients:['2 cups Rice','2 cups Vegetables','1 tsp Biryani Masala','2 tbsp Ghee'],
+steps:['Wash basmati rice','Cook vegetables lightly','Prepare biryani masala','Cook rice halfway','Layer vegetables and rice','Add mint leaves','Pour saffron milk','Cover tightly','Cook on low flame','Rest for 10 minutes','Mix gently','Serve with raita']
 },
 {
-name:"Falafel Wrap",
-country:"Middle East",
-image:"https://images.unsplash.com/photo-1529006557810-274b9b2fc783",
-ingredients:["Chickpeas","Garlic","Parsley","Flour","Pita bread"],
-steps:["Blend chickpeas and herbs.","Shape into balls.","Fry until crispy.","Stuff in pita bread.","Add sauces."],
-description:"Crunchy chickpea balls wrapped in pita bread."
+name:'Palak Paneer',
+cuisine:'Indian',
+image:'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?q=80&w=1200&auto=format&fit=crop',
+ingredients:['300g Spinach','200g Paneer','4 Garlic Cloves','1 Onion'],
+steps:['Wash spinach properly','Boil spinach briefly','Blend spinach puree','Cook onions in oil','Add garlic paste','Mix spices carefully','Add spinach puree','Add paneer cubes','Cook for 5 minutes','Add cream','Garnish nicely','Serve warm']
 },
 {
-name:"Tacos",
-country:"Mexico",
-image:"https://images.unsplash.com/photo-1552332386-f8dd00dc2f85",
-ingredients:["Taco shells","Beans","Cheese","Lettuce","Tomatoes"],
-steps:["Cook beans.","Fill taco shells.","Add vegetables and cheese.","Serve fresh."],
-description:"Mexican street-style vegetarian tacos."
+name:'Margherita Pizza',
+cuisine:'Italian',
+image:'https://images.unsplash.com/photo-1604382355076-af4b0eb60143?q=80&w=1200&auto=format&fit=crop',
+ingredients:['1 Pizza Base','2 cups Cheese','1/2 cup Sauce','6 Basil Leaves'],
+steps:['Prepare pizza dough','Spread pizza sauce','Add cheese generously','Place basil leaves','Preheat oven properly','Bake pizza evenly','Cook until golden','Remove carefully','Slice into pieces','Garnish beautifully','Serve hot','Enjoy cheesy flavor']
+},
+{
+name:'Pasta Alfredo',
+cuisine:'Italian',
+image:'https://images.unsplash.com/photo-1645112411341-6c4fd023882c?q=80&w=1200&auto=format&fit=crop',
+ingredients:['250g Pasta','1 cup Cream','1 cup Cheese','2 tbsp Butter'],
+steps:['Boil pasta properly','Drain extra water','Melt butter in pan','Cook garlic briefly','Pour fresh cream','Add cheese slowly','Mix creamy sauce','Add boiled pasta','Season with herbs','Cook for 2 minutes','Garnish beautifully','Serve immediately']
+},
+{
+name:'Veg Noodles',
+cuisine:'Chinese',
+image:'https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?q=80&w=1200&auto=format&fit=crop',
+ingredients:['200g Noodles','1 Carrot','1 Capsicum','2 tbsp Soy Sauce'],
+steps:['Boil noodles properly','Drain water completely','Heat oil in wok','Cook garlic briefly','Add vegetables','Stir fry on high flame','Add noodles carefully','Pour soy sauce','Mix evenly','Season lightly','Cook for 2 minutes','Serve hot']
+},
+{
+name:'Spring Rolls',
+cuisine:'Chinese',
+image:'https://images.unsplash.com/photo-1603133872878-684f208fb84b?q=80&w=1200&auto=format&fit=crop',
+ingredients:['10 Roll Wrappers','1 cup Vegetables','2 tbsp Oil'],
+steps:['Prepare vegetable filling','Cook vegetables lightly','Cool the filling','Place filling inside wrapper','Roll tightly','Seal edges carefully','Heat oil properly','Fry until golden','Drain excess oil','Prepare dip','Arrange nicely','Serve crispy']
+},
+{
+name:'Veg Sushi',
+cuisine:'Japanese',
+image:'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=1200&auto=format&fit=crop',
+ingredients:['2 cups Rice','4 Seaweed Sheets','1 Cucumber','1 Carrot'],
+steps:['Cook sushi rice','Prepare vegetables','Place seaweed sheet','Spread rice evenly','Add vegetable filling','Roll tightly','Seal properly','Slice carefully','Arrange beautifully','Prepare dipping sauce','Serve fresh','Enjoy chilled']
+},
+{
+name:'Falafel',
+cuisine:'Middle Eastern',
+image:'https://images.unsplash.com/photo-1541599188778-cdc73298e8b6?q=80&w=1200&auto=format&fit=crop',
+ingredients:['2 cups Chickpeas','2 Garlic Cloves','1 Onion','Parsley'],
+steps:['Soak chickpeas overnight','Blend ingredients smoothly','Add herbs and spices','Shape into balls','Heat oil properly','Fry until crispy','Drain excess oil','Prepare pita bread','Add vegetables','Serve with dip','Arrange beautifully','Enjoy fresh']
+},
+{
+name:'Tacos',
+cuisine:'Mexican',
+image:'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?q=80&w=1200&auto=format&fit=crop',
+ingredients:['4 Tortillas','1 cup Beans','1 Tomato','1 Onion'],
+steps:['Prepare taco filling','Cook beans properly','Warm tortillas lightly','Add filling evenly','Add vegetables','Sprinkle cheese','Prepare salsa','Arrange tacos','Add herbs','Serve immediately','Enjoy crunchy taste','Serve hot']
+},
+{
+name:'Greek Salad',
+cuisine:'Greek',
+image:'https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=1200&auto=format&fit=crop',
+ingredients:['1 Cucumber','2 Tomatoes','Olives','Olive Oil'],
+steps:['Wash vegetables properly','Chop cucumber finely','Slice tomatoes evenly','Add olives','Prepare dressing','Mix vegetables','Pour dressing','Toss gently','Season lightly','Arrange beautifully','Chill slightly','Serve fresh']
+},
+{
+name:'Ratatouille',
+cuisine:'French',
+image:'https://images.unsplash.com/photo-1473093295043-cdd812d0e601?q=80&w=1200&auto=format&fit=crop',
+ingredients:['1 Zucchini','1 Eggplant','2 Tomatoes','Olive Oil'],
+steps:['Slice vegetables evenly','Grease baking dish','Arrange vegetables','Prepare seasoning','Add olive oil','Bake slowly','Cook until tender','Garnish beautifully','Rest briefly','Plate carefully','Serve warm','Enjoy fresh flavors']
+},
+{
+name:'Veg Thai Basil Rice',
+cuisine:'Thai',
+image:'https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=1200&auto=format&fit=crop',
+ingredients:['2 cups Rice','1 cup Vegetables','8 Basil Leaves','2 tbsp Soy Sauce'],
+steps:['Cook rice properly','Chop vegetables finely','Heat oil in wok','Cook garlic briefly','Add vegetables carefully','Stir fry evenly','Add cooked rice','Pour soy sauce','Mix basil leaves','Cook for 2 minutes','Arrange beautifully','Serve hot']
+},
+{
+name:'Korean Veg Pancakes',
+cuisine:'Korean',
+image:'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200&auto=format&fit=crop',
+ingredients:['1 cup Flour','1 Carrot','1 Onion','1 Capsicum','2 tbsp Oil'],
+steps:['Prepare pancake batter','Slice vegetables thinly','Mix vegetables into batter','Heat pan properly','Pour batter evenly','Cook until golden','Flip carefully','Cook other side','Prepare dipping sauce','Cut into slices','Arrange nicely','Serve warm']
 }
 ];
 
-const extraRecipes = [
-"Pasta Alfredo","Veg Burger","Greek Salad","Ratatouille","Hummus","Spring Rolls","Pad Thai","Miso Soup","Kimchi Fried Rice","Fried Rice","Veg Biryani","Dosa","Idli","Pav Bhaji","Chole Bhature","Samosa","Kebab","Pesto Pasta","Lasagna","Tom Yum Soup","Pho","Bibimbap","Tofu Stir Fry","Ramen","Quesadilla","Nachos","Burrito","Guacamole","Caesar Salad","Minestrone Soup","Croissant Sandwich","French Onion Soup","Gnocchi","Paella","Shakshuka without egg","Stuffed Peppers","Mac and Cheese","Veg Momos","Manchurian","Hakka Noodles","Thai Curry","Green Curry","Red Curry","Couscous","Fettuccine","Bruschetta","Risotto","Chocolate Pancakes","Banana Smoothie","Fruit Tart"
-];
-
-extraRecipes.forEach((dish,index)=>{
-recipes.push({
-name:dish,
-country:"World Famous",
-image:`https://source.unsplash.com/800x500/?${dish.replace(/ /g,',')}`,
-ingredients:[
-"Fresh vegetables",
-"Cheese or tofu",
-"Herbs and spices",
-"Sauces",
-"Oil and seasonings"
-],
-steps:[
-"Prepare all ingredients.",
-"Cook according to the recipe style.",
-"Add spices and sauces.",
-"Cook until flavorful.",
-"Serve hot and fresh."
-],
-description:`${dish} is a famous vegetarian dish enjoyed around the world. It is delicious, healthy, and fully egg-free and non-vegetarian free.`
-});
-});
-
-const recipeList = document.getElementById("recipeList");
-const content = document.getElementById("content");
+const indexDropdown = document.getElementById('recipeIndex');
 
 recipes.forEach((recipe,index)=>{
-const btn = document.createElement("button");
-btn.innerText = `${index+1}. ${recipe.name}`;
-btn.onclick = ()=>showRecipe(recipe);
-recipeList.appendChild(btn);
+const option=document.createElement('option');
+option.value=index;
+option.textContent=`${index+1}. ${recipe.name}`;
+indexDropdown.appendChild(option);
 });
 
-function showRecipe(recipe){
-content.innerHTML = `
-<div class="hero">
-<h2>🍽️ ${recipe.name}</h2>
-</div>
-<div class="recipe-card">
+indexDropdown.addEventListener('change',e=>{
+const recipeCards=document.querySelectorAll('.card');
+const selected=e.target.value;
+if(selected!==''){
+recipeCards[selected].scrollIntoView({behavior:'smooth'});
+}
+});
+
+const grid = document.getElementById('recipeGrid');
+
+function displayRecipes(data){
+grid.innerHTML='';
+
+data.forEach((recipe,index)=>{
+const card=document.createElement('div');
+card.className='card';
+
+card.innerHTML=`
 <img src="${recipe.image}" alt="${recipe.name}">
+<div class="card-content">
+<span class="cuisine">${recipe.cuisine}</span>
 <h2>${recipe.name}</h2>
-<p><b>🌍 Origin:</b> ${recipe.country}</p>
-<div class="badge">⭐ Famous Worldwide</div>
-<p>${recipe.description}</p>
-
-<div class="section-title">🥗 Ingredients</div>
-<ul>
-${recipe.ingredients.map(item=>`<li>${item}</li>`).join('')}
-</ul>
-
-<div class="section-title">👨‍🍳 Recipe Steps</div>
-<ol>
-${recipe.steps.map(step=>`<li>${step}</li>`).join('')}
-</ol>
+<p style="margin-top:10px;opacity:0.9;line-height:1.6;">A delicious and famous vegetarian dish loved around the world.</p>
+<button onclick="openRecipe(${index})" style="margin-top:15px;">View Full Recipe</button>
 </div>
 `;
+
+grid.appendChild(card);
+});
+}
+
+displayRecipes(recipes);
+
+function openRecipe(index){
+const recipe=recipes[index];
+const page=document.getElementById('recipePage');
+
+grid.style.display='none';
+page.style.display='block';
+
+page.innerHTML=`
+<div class="card" style="max-width:900px;margin:auto;overflow:hidden;">
+<img src="${recipe.image}" alt="${recipe.name}" style="height:400px;object-fit:cover;">
+<div class="card-content" style="padding:35px;">
+<button onclick="goBack()" style="margin-bottom:20px;">← Back to Recipes</button>
+<span class="cuisine">${recipe.cuisine}</span>
+<h1 style="font-size:3rem;margin:15px 0;color:#fde68a;">${recipe.name}</h1>
+<p style="line-height:1.9;font-size:1.05rem;opacity:0.95;">
+This famous vegetarian recipe is known for its rich flavor, wonderful aroma, and delicious taste. It is one of the most loved dishes in ${recipe.cuisine} cuisine.
+</p>
+
+<div class="ingredients" style="margin-top:30px;">
+<h2 style="margin-bottom:15px;color:#93c5fd;">Ingredients Needed</h2>
+<ul>
+${recipe.ingredients.map(i=>`<li style="margin-bottom:10px;">${i}</li>`).join('')}
+</ul>
+</div>
+
+<div class="steps" style="margin-top:35px;">
+<h2 style="margin-bottom:15px;color:#93c5fd;">Step-by-Step Cooking Method</h2>
+<ol>
+${recipe.steps.map(s=>`<li style="margin-bottom:14px;line-height:1.8;">${s}</li>`).join('')}
+</ol>
+</div>
+</div>
+</div>
+`;
+
+window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function goBack(){
+grid.style.display='grid';
+document.getElementById('recipePage').style.display='none';
+}
+
+document.getElementById('search').addEventListener('input',e=>{
+const value=e.target.value.toLowerCase();
+const filtered=recipes.filter(r=>
+r.name.toLowerCase().includes(value) ||
+r.cuisine.toLowerCase().includes(value)
+);
+displayRecipes(filtered);
+});
+
+async function downloadPDF(){
+const { jsPDF } = window.jspdf;
+const doc = new jsPDF();
+
+let y = 20;
+
+doc.setFontSize(22);
+doc.text('30 Premium Vegetarian Cuisine Recipes',20,y);
+y+=15;
+
+recipes.forEach((recipe,index)=>{
+if(y>260){
+doc.addPage();
+y=20;
+}
+
+doc.setFontSize(16);
+doc.text(`${index+1}. ${recipe.name} (${recipe.cuisine})`,20,y);
+y+=8;
+
+doc.setFontSize(11);
+doc.text('Ingredients: '+recipe.ingredients.join(', '),20,y);
+y+=8;
+
+doc.text('Steps: '+recipe.steps.join(' | '),20,y,{maxWidth:170});
+y+=18;
+});
+
+doc.save('50_Vegetarian_Recipes.pdf');
 }
 </script>
 
 </body>
 </html>
-```
-
-The app includes:
-
-* 50+ famous vegetarian recipes from around the world
-* Fully egg-free and non-vegetarian-free dishes
-* Beautiful modern food-app design
-* Large food banners and recipe images
-* Clickable recipe index/sidebar
-* Detailed ingredients and cooking steps
-* Mobile responsive layout
-* Smooth animations and stylish recipe cards
-* World cuisine collection including Indian, Italian, Mexican, Japanese, Thai, Middle Eastern, French, and more
-* Easy-to-use interface
-* Attractive colors and food-themed styling
-* Works directly in any browser using a single HTML file
-* Perfect for school projects, cooking websites, and personal recipe collections
-
-Add this section before the closing </body> tag if you want it visible inside the app:
-
-```html
-<div style="margin-top:40px;background:white;padding:25px;border-radius:20px;box-shadow:0 4px 12px rgba(0,0,0,0.15)">
-<h2 style="color:#ff6f00;margin-bottom:15px;">🍴 About This Recipe App</h2>
-<ul style="line-height:2;font-size:17px;color:#444;">
-<li>50+ famous vegetarian recipes from around the world</li>
-<li>Fully egg-free and non-vegetarian-free dishes</li>
-<li>Beautiful modern food-app design</li>
-<li>Large food banners and recipe images</li>
-<li>Clickable recipe index/sidebar</li>
-<li>Detailed ingredients and cooking steps</li>
-<li>Mobile responsive layout</li>
-<li>Smooth animations and stylish recipe cards</li>
-<li>World cuisine collection including Indian, Italian, Mexican, Japanese, Thai, Middle Eastern, French, and more</li>
-<li>Easy-to-use interface</li>
-<li>Attractive colors and food-themed styling</li>
-<li>Works directly in any browser using a single HTML file</li>
-<li>Perfect for school projects, cooking websites, and personal recipe collections</li>
-</ul>
-</div>
 ```
